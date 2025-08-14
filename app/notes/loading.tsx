@@ -1,4 +1,3 @@
-const NotesLoading = () => {
+export default function NotesLoading ()  {
   return <p>Loading, please wait...</p>;
 }
-export default NotesLoading;
