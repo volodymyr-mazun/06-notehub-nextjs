@@ -15,6 +15,7 @@ export default function NoteDetailsClient({ noteId }: { noteId: string }) {
     queryKey: ["note", noteId],
     queryFn: () => fetchNoteById(noteId),
     enabled: !!noteId,
+    refetchOnMount: false,
   });
 
   const { mutate: removeNote, isPending: isDeleting } = useMutation({
@@ -30,10 +31,6 @@ export default function NoteDetailsClient({ noteId }: { noteId: string }) {
       removeNote(Number(noteId));
     }
   };
-
-  if (!noteId) {
-    return <p>Invalid note ID.</p>;
-  }
 
   if (isLoading) return <p>Loading, please wait...</p>;
 
