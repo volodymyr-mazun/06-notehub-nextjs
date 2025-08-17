@@ -12,7 +12,7 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-export default function Modal({ onClose, children }: ModalProps) {
+const Modal = ({ onClose, children }: ModalProps) => {
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
@@ -38,10 +38,12 @@ export default function Modal({ onClose, children }: ModalProps) {
   }, [onClose]);
 
   return createPortal(
-    <div className={css.backdrop} role="dialog" aria-modal="true" onClick={handleBackdropClick} >
+    <div onClick={handleBackdropClick} className={css.backdrop} role="dialog" aria-modal="true" >
       <div className={css.modal}>{children}</div>
     </div>,
 
     document.body
   );
 };
+
+export default Modal;

@@ -55,10 +55,8 @@ export default function NoteDetailsClient({ noteId }: { noteId: string }) {
           <h2>{note.title}</h2>
           {note.tag && <span className={css.tag}>{note.tag}</span>}
         </div>
-        <p className={css.content}>{note.content}</p>
-        <p className={css.date}>
-          Created: {new Date(note.createdAt).toLocaleDateString()}
-        </p>
+          <p className={css.content}>{note.content}</p>
+          <p className={css.date}>Created: {new Date(note.createdAt).toLocaleDateString()}</p>
       </div>
     </div>
   );

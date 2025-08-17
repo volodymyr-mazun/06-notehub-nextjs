@@ -11,22 +11,18 @@ export interface Note {
   createdAt: string;
   updatedAt: string;
   tag: NoteTag;
-}
-
-// ----------Типізація масива обєкта----------
-export interface NotesResponse {
-  notes: Note[];
-  totalPages: number;
-}
+}                                           
 
 export interface UpdateNoteData {
   title?: string;
   content?: string;
+  tag: NoteTag;                             
 }
 
 export interface CreateNoteData {
   title: string;
   content: string;
+  tag: NoteTag;                            
 }
 
 export interface CreateNotePayload {

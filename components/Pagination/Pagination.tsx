@@ -2,7 +2,6 @@
 // ----------КОМПОНЕНТ, НАЛАШТУВАННЯ БІБЛІОТЕКИ REACT PAGINATION----------
 
 import css from './Pagination.module.css';
-import React from 'react';
 import ReactPaginate from 'react-paginate';
 
 interface PaginationProps {
@@ -11,7 +10,7 @@ interface PaginationProps {
   onPageChange: (selectedItem: { selected: number }) => void;
 }
 
-export default function Pagination ({ pageCount, onPageChange, currentPage, }: PaginationProps ) {
+const Pagination = ({ pageCount, onPageChange, currentPage, }: PaginationProps ) => {
   return (
     <ReactPaginate
       previousLabel={'← Назад'}
@@ -28,3 +27,5 @@ export default function Pagination ({ pageCount, onPageChange, currentPage, }: P
     />
   );
 };
+
+export default Pagination;

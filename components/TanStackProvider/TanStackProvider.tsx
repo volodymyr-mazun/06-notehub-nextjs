@@ -1,5 +1,5 @@
 
-// ----------КОМПОНЕНТ, ФОРМА ДЛЯ ПОШУКУ----------
+// ----------КОМПОНЕНТ, ДОСТУП ВСІМ ДОЧІРНІМ КОМПОНЕНТАМ ДО queryClient----------
 
 "use client";
 
@@ -10,7 +10,7 @@ type Props = {
   children: ReactNode;
 }
 
-export default function TanStackProvider({ children }: Props) {
+const TanStackProvider = ({ children }: Props) => {
   const [queryClient] = useState(() => new QueryClient())
     return (
       <QueryClientProvider client={queryClient}>
@@ -18,3 +18,5 @@ export default function TanStackProvider({ children }: Props) {
       </QueryClientProvider>
     );
 }
+
+export default TanStackProvider;

@@ -4,8 +4,7 @@ interface ErrorMessageProps{
     message: string;
 }
 
-
-const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
+const ErrorMessage = ({ message }: ErrorMessageProps) => {
     return <p className={css.text}>{message}</p>
 }
 

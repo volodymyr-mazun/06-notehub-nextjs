@@ -1,16 +1,14 @@
 
-// ----------КОМПОНЕНТ, ФОРМА ДЛЯ ПОШУКУ----------
+// ----------КОМПОНЕНТ, ФОРМА ДЛЯ ПОШУКУ НОТАТКИ----------
 
 import css from './SearchBox.module.css';
-import React from 'react';
-
 
 interface SearchBoxProps {
   value: string;
   onChange: (value: string) => void;
 }
 
-export default function SearchBox ({ value, onChange }: SearchBoxProps) {
+const SearchBox = ({ value, onChange }: SearchBoxProps) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
   };
@@ -26,3 +24,5 @@ export default function SearchBox ({ value, onChange }: SearchBoxProps) {
     />
   );
 };
+
+export default SearchBox;

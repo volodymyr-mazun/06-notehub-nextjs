@@ -31,7 +31,7 @@ export async function fetchNotes({ page = 1, perPage = 12, search = "", }: { pag
   return response.data;
 }
 
-export const getNotes = fetchNotes;
+// export const getNotes = fetchNotes;
 
 // ----------Створення нової нотатки  на сервері----------
 export async function createNote(payload: CreateNotePayload): Promise<Note> {
@@ -40,8 +40,9 @@ export async function createNote(payload: CreateNotePayload): Promise<Note> {
 }
 
 // ----------Видалення нотатки за ID----------
-export async function deleteNote(id: number | string): Promise<void> {
-  await api.delete(`/notes/${id}`);
+export async function deleteNote(id: number | string): Promise<Note> {
+  const response = await api.delete(`/notes/${id}`);
+  return response.data;                                                         //містить обєкт видаленної нотатки
 }
 
 // ----------Отримати одну нотатку за її ID----------
@@ -50,4 +51,4 @@ export async function fetchNoteById(id: number | string): Promise<Note> {
   return response.data;
 }
 
-export const getNoteById = fetchNoteById;
+// export const getNoteById = fetchNoteById;

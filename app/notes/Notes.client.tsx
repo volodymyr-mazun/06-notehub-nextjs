@@ -1,6 +1,4 @@
 
-// ----------КОМПОНЕНТ КЛІЄНТСЬКИЙ----------
-
 "use client";
 
 import React, { useState } from "react";
@@ -10,15 +8,26 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useDebounce } from "use-debounce";
 
 import { fetchNotes } from "@/lib/api";
-import type { NotesResponse } from "@/types/note";
+import type { Note } from "@/types/note";
 
+import Loader from "@/components/Loader/Loader";
+import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
-import Modal from "@/components/Modal/Modal";
 
-export default function NotesClient() {
+export interface NotesResponse {
+  notes: Note[];
+  totalPages: number;
+}
+
+interface NotesClientProps {
+  notes: Note[];
+  totalPages: number;
+}
+
+export default function NotesClient({ notes, totalPages }: NotesClientProps){
   const queryClient = useQueryClient();
 
   const [page, setPage] = useState(1);
@@ -30,7 +39,8 @@ export default function NotesClient() {
   const { data, error, isLoading, isFetching } = useQuery<NotesResponse>({
     queryKey: ["notes", page, debouncedSearch],
     queryFn: () => fetchNotes({ page, search: debouncedSearch }),
-    placeholderData: () => ({ notes: [], totalPages: 1 }),
+    placeholderData: { notes: [], totalPages: 1 },
+    initialData: { notes, totalPages } as NotesResponse,
   });
 
   const handleSearchChange = (value: string) => {
@@ -57,7 +67,7 @@ export default function NotesClient() {
         <button className={css.button} onClick={openModal}>Create note +</button>
       </header>
 
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loader />}
 
       {error && (
         <div className={css.error}>
@@ -78,7 +88,7 @@ export default function NotesClient() {
             />
           )}
         </>
-        
+
       ) : (
         !isLoading && <div className={css.noNotes}>No notes found</div>
       )}

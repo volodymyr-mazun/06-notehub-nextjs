@@ -1,10 +1,9 @@
 
 // ----------КОМПОНЕНТ, ІНДИКАТОР ЗАВАНТАЖЕННЯ----------
 
-import React from 'react';
 import css from './Loader.module.css';
 
-export default function Loader() {
+const Loader = () => {
   return (
     <div className={css.loading} role="status" aria-live="polite">
       <span className={css.spinner} />
@@ -12,3 +11,5 @@ export default function Loader() {
     </div>
   );
 }
+
+export default Loader;

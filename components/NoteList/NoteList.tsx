@@ -13,7 +13,7 @@ interface NoteListProps {
   notes: Note[];
 }
 
-export default function NoteList({ notes }: NoteListProps) {
+const NoteList = ({ notes }: NoteListProps) => {
   const queryClient = useQueryClient();
 
   const { mutate: removeNote, isPending } = useMutation({
@@ -51,3 +51,5 @@ export default function NoteList({ notes }: NoteListProps) {
     </ul>
   );
 }
+
+export default NoteList;
